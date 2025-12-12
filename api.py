@@ -9,26 +9,21 @@ from dotenv import load_dotenv
 from entity_details import find_entity
 from datetime import datetime, timezone
 
-CONN_STR = DB_DSN
-
-load_dotenv()
-
+# 1) Load DB_DSN from environment (with local fallback)
 DB_DSN = os.getenv(
     "DB_DSN",
     "dbname=sunbiz user=postgres password=yourpassword host=localhost port=5432"
 )
 
-# Simple connection pool for search endpoint
-POOL = psycopg2.pool.SimpleConnectionPool(minconn=1, maxconn=5, dsn=DB_DSN)
+# 2) Use DB_DSN for all connections
+CONN_STR = DB_DSN
 
-app = FastAPI(title="Sunbiz Search API")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# 3) If you use a connection pool, define it AFTER DB_DSN exists
+# (Only if your code actually has this—if not, skip)
+try:
+    POOL = psycopg2.pool.SimpleConnectionPool(minconn=1, maxconn=5, dsn=DB_DSN)
+except Exception as e:
+    print("Failed to initialize connection pool:", e)
 
 # Serve the main frontend page (renewal flow)
 @app.get("/", response_class=HTMLResponse)
