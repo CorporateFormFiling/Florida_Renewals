@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Florida Renewals – Search</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; padding: 24px; }
+    input { width: 520px; padding: 12px; font-size: 16px; }
+    ul { padding-left: 0; }
+    li { list-style: none; margin: 10px 0; }
+    .pill { padding: 2px 8px; border-radius: 12px; font-size: 12px; border: 1px solid #ddd; margin-left: 6px; }
+    button { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Find your company</h2>
+  <input id="q" placeholder="Search your company name" oninput="go(this.value)" />
+  <ul id="out"></ul>
+
+  <script>
+    let t;
+    async function go(v){
+      clearTimeout(t);
+      if (!v || v.trim().length < 3) { document.getElementById('out').innerHTML = ""; return; }
+      t = setTimeout(async ()=>{
+        const url = `http://127.0.0.1:8000/api/entities/search?q=${encodeURIComponent(v.trim())}&limit=10`;
+        const res = await fetch(url);
+        const data = await res.json();
+        document.getElementById('out').innerHTML = data.map(x => {
+          const status = x.status ? `<span class="pill">${x.status}</span>` : "";
+          const type = x.filing_type ? `<span class="pill">${x.filing_type}</span>` : "";
+          return `<li>
+            <strong>${x.name}</strong> ${type} ${status} — ${x.city || ""}
+            <button onclick="location.href='renew.html?doc=${encodeURIComponent(x.doc_number)}'">Renew</button>
+            <small style="color:#666">(${x.doc_number})</small>
+          </li>`;
+        }).join('');
+      }, 200);
+    }
+  </script>
+</body>
+</html>

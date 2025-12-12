@@ -1,0 +1,1578 @@
+.<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Renew your Florida company</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; padding: 24px; max-width: 720px; }
+    label { display:block; margin-top: 12px; font-weight:600; }
+    input { width: 100%; padding: 10px; margin-top: 6px; }
+    .readonly { background:#f7f7f7; }
+    .row { display:flex; gap:12px; }
+    .row > div { flex:1; }
+    .pill { padding: 2px 8px; border-radius: 12px; font-size: 12px; border:1px solid #ddd; margin-left:6px; }
+    button { margin-top:16px; padding:10px 16px; font-size:15px; }
+  </style>
+</head>
+<body>
+	<h1 id="company-name">Loading company...</h1>
+	<p id="error-message" style="color: red;"></p>
+
+	<label>Company Name:</label>
+	<input id="company-name-input" type="text">
+	<br><br>
+	
+	<label>Document Number:</label>
+	<input id="doc-number-input" type="text">
+	<br><br>
+
+	<label>FEI / FEIN:</label>
+	<input id="fein-input" type="text">
+	<br><br>
+
+	<h2>Principal Address</h2>
+
+	<label>Address Line 1:</label>
+	<input id="principal-line1" type="text"><br><br>
+
+	<label>Address Line 2:</label>
+	<input id="principal-line2" type="text"><br><br>
+
+	<label>City:</label>
+	<input id="principal-city" type="text"><br><br>
+
+	<label>State:</label>
+	<input id="principal-state" type="text"><br><br>
+
+	<label>Zip Code:</label>
+	<input id="principal-zip" type="text"><br><br>
+
+	<h2>Mailing Address</h2>
+
+	<label>Address Line 1:</label>
+	<input id="mailing-line1" type="text"><br><br>
+
+	<label>Address Line 2:</label>
+	<input id="mailing-line2" type="text"><br><br>
+
+	<label>City:</label>
+	<input id="mailing-city" type="text"><br><br>
+
+	<label>State:</label>
+	<input id="mailing-state" type="text"><br><br>
+
+	<label>Zip Code:</label>
+	<input id="mailing-zip" type="text"><br><br>
+
+	<h2>Registered Agent</h2>
+
+	<label>Registered Agent Name:</label>
+	<input id="ra-name" type="text"><br><br>
+
+	<label>Address Line 1:</label>
+	<input id="ra-line1" type="text"><br><br>
+
+	<label>Address Line 2:</label>
+	<input id="ra-line2" type="text"><br><br>
+
+	<label>City:</label>
+	<input id="ra-city" type="text"><br><br>
+
+	<label>State:</label>
+	<input id="ra-state" type="text"><br><br>
+
+	<label>Zip Code:</label>
+	<input id="ra-zip" type="text"><br><br>
+
+<h2>Officers</h2>
+
+<h3>Officer 1</h3>
+
+<label>First Name:</label>
+<input id="officer1-first" type="text"><br><br>
+
+<label>Last Name:</label>
+<input id="officer1-last" type="text"><br><br>
+
+<label>Title:</label>
+<input id="officer1-title" type="text"><br><br>
+
+<label>Address Line 1:</label>
+<input id="officer1-line1" type="text"><br><br>
+
+<label>Address Line 2:</label>
+<input id="officer1-line2" type="text"><br><br>
+
+<label>City:</label>
+<input id="officer1-city" type="text"><br><br>
+
+<label>State:</label>
+<input id="officer1-state" type="text"><br><br>
+
+<label>Zip Code:</label>
+<input id="officer1-zip" type="text"><br><br>
+
+
+<h3>Officer 2</h3>
+
+<label>First Name:</label>
+<input id="officer2-first" type="text"><br><br>
+
+<label>Last Name:</label>
+<input id="officer2-last" type="text"><br><br>
+
+<label>Title:</label>
+<input id="officer2-title" type="text"><br><br>
+
+<label>Address Line 1:</label>
+<input id="officer2-line1" type="text"><br><br>
+
+<label>Address Line 2:</label>
+<input id="officer2-line2" type="text"><br><br>
+
+<label>City:</label>
+<input id="officer2-city" type="text"><br><br>
+
+<label>State:</label>
+<input id="officer2-state" type="text"><br><br>
+
+<label>Zip Code:</label>
+<input id="officer2-zip" type="text"><br><br>
+
+<h3>Officer 3</h3>
+
+<label>First Name:</label>
+<input id="officer3-first" type="text"><br><br>
+
+<label>Last Name:</label>
+<input id="officer3-last" type="text"><br><br>
+
+<label>Title:</label>
+<input id="officer3-title" type="text"><br><br>
+
+<label>Address Line 1:</label>
+<input id="officer3-line1" type="text"><br><br>
+
+<label>Address Line 2:</label>
+<input id="officer3-line2" type="text"><br><br>
+
+<label>City:</label>
+<input id="officer3-city" type="text"><br><br>
+
+<label>State:</label>
+<input id="officer3-state" type="text"><br><br>
+
+<label>Zip Code:</label>
+<input id="officer3-zip" type="text"><br><br>
+
+
+  <!-- Step 1: Look up your business -->
+  <section id="lookup-section" style="margin-bottom: 30px;">
+    <h1>Renew Your Florida LLC</h1>
+    <h2>Step 1: Find Your Business</h2>
+
+    <div style="margin-bottom: 16px;">
+      <label>
+        Search by name or document number:
+        <input id="searchInput" placeholder="Company Name or Document Number" />
+      </label>
+      <button id="searchBtn">Search</button>
+      <div id="searchError" style="color: red; margin-top: 8px;"></div>
+    </div>
+
+    <ul id="searchResults" style="
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      max-width: 600px;
+    "></ul>
+    <div style="font-size: 12px; color: #555; margin-top: 4px;">
+      Click your business below to load its details.
+    </div>
+  </section>
+
+  <!-- Step 1b: Selected entity summary -->
+  <section id="entity-summary" style="display: none; margin-bottom: 30px;">
+    <div style="
+      border: 1px solid #ddd;
+      padding: 16px;
+      border-radius: 8px;
+      background: #fafafa;
+    ">
+      <h2 id="entityName"></h2>
+      <p>
+        <strong>Document #:</strong>
+        <span id="entityDoc"></span>
+      </p>
+      <p>
+        <strong>Status:</strong>
+        <span id="entityStatus"></span>
+      </p>
+      <p>
+        <strong>Filing Type:</strong>
+        <span id="entityFilingType"></span>
+      </p>
+      <p>
+        <strong>FEI Number:</strong>
+        <span id="entityFei"></span>
+      </p>
+      <p>
+        <strong>File Date:</strong>
+        <span id="entityFileDate"></span>
+      </p>
+
+      <h3>Principal Address</h3>
+      <p id="principalAddress"></p>
+
+      <h3>Mailing Address</h3>
+      <p id="mailingAddress"></p>
+
+      <h3>Registered Agent</h3>
+      <p id="registeredAgent"></p>
+
+      <h3>Officers</h3>
+      <ul id="officersList"></ul>
+
+      <h3>Report Years</h3>
+      <ul id="reportYearsList"></ul>
+    </div>
+
+    <p style="margin-top: 16px; font-style: italic;">
+      Step 2: Review and complete your renewal details below.
+    </p>
+  </section>
+
+  <!-- Your existing renewal form / content should stay below this comment -->
+  <!-- STEP 2: Your renewal form goes here -->
+  <h2>Renew your Florida company</h2>
+  <div id="hdr"></div>
+
+  <form id="renew-form" onsubmit="handleSubmit(event)">
+    <label>Document Number
+      <input id="doc" class="readonly" readonly />
+    </label>
+    <label>Entity Name
+      <input id="name" class="readonly" readonly />
+    </label>
+    <div class="row">
+      <div><label>Entity Type
+        <input id="type" class="readonly" readonly />
+      </label></div>
+      <div><label>Status
+        <input id="status" class="readonly" readonly />
+      </label></div>
+    </div>
+      <section id="renewal-form" style="margin-top: 20px;">
+    <h2>Step 2: Confirm / Update Business Details</h2>
+
+    <label>
+      FEI Number:
+      <input id="fei" type="text" />
+    </label>
+    <br /><br />
+
+    <!-- Principal Address -->
+    <fieldset style="margin-bottom: 16px;">
+      <legend><strong>Principal Address</strong></legend>
+    <br /><br />
+    <label>
+        Address Line 1:
+        <input id="principal_address1" type="text" />
+      </label><br />
+      <label>
+        Address Line 2:
+        <input id="principal_address2" type="text" />
+      </label><br />
+      <label>
+        City:
+        <input id="principal_city" type="text" />
+      </label><br />
+      <label>
+        State:
+        <input id="principal_state" type="text" />
+      </label><br />
+      <label>
+        ZIP:
+        <input id="principal_zip" type="text" />
+      </label><br />
+      <label>
+        Country:
+        <input id="principal_country" type="text" />
+      </label>
+    </fieldset>
+
+    <!-- Mailing Address -->
+    <fieldset style="margin-bottom: 16px;">
+      <legend><strong>Mailing Address</strong></legend>
+      <label>
+        Address Line 1:
+        <input id="mailing_address1" type="text" />
+      </label><br />
+      <label>
+        Address Line 2:
+        <input id="mailing_address2" type="text" />
+      </label><br />
+      <label>
+        City:
+        <input id="mailing_city" type="text" />
+      </label><br />
+      <label>
+        State:
+        <input id="mailing_state" type="text" />
+      </label><br />
+      <label>
+        ZIP:
+        <input id="mailing_zip" type="text" />
+      </label><br />
+      <label>
+        Country:
+        <input id="mailing_country" type="text" />
+      </label>
+    </fieldset>
+
+    <!-- Registered Agent -->
+    <fieldset style="margin-bottom: 16px;">
+      <legend><strong>Registered Agent</strong></legend>
+      <label>
+        Name:
+        <input id="ra_name" type="text" />
+      </label><br />
+      <label>
+        Address Line:
+        <input id="ra_address1" type="text" />
+      </label><br />
+      <label>
+        City:
+        <input id="ra_city" type="text" />
+      </label><br />
+      <label>
+        State:
+        <input id="ra_state" type="text" />
+      </label><br />
+      <label>
+        ZIP:
+        <input id="ra_zip" type="text" />
+      </label>
+    </fieldset>
+
+    <!-- Officers -->
+    <fieldset style="margin-bottom: 16px;">
+      <legend><strong>Officers / Managers</strong></legend>
+      <p style="font-size: 12px; color: #555;">
+        These fields will be prefilled from Sunbiz. You can edit any of them.
+      </p>
+
+      <!-- Officer 1 -->
+      <div style="margin-bottom: 10px;">
+        <strong>Officer 1</strong><br />
+        <label>
+          Title:
+          <input id="officer1_title" type="text" />
+        </label><br />
+        <label>
+          Name:
+          <input id="officer1_name" type="text" />
+        </label><br />
+        <label>
+          Address:
+          <input id="officer1_address" type="text" />
+        </label><br />
+        <label>
+          City:
+          <input id="officer1_city" type="text" />
+        </label><br />
+        <label>
+          State:
+          <input id="officer1_state" type="text" />
+        </label><br />
+        <label>
+          ZIP:
+          <input id="officer1_zip" type="text" />
+        </label>
+      </div>
+
+      <!-- Officer 2 -->
+      <div style="margin-bottom: 10px;">
+        <strong>Officer 2</strong><br />
+        <label>
+          Title:
+          <input id="officer2_title" type="text" />
+        </label><br />
+        <label>
+          Name:
+          <input id="officer2_name" type="text" />
+        </label><br />
+        <label>
+          Address:
+          <input id="officer2_address" type="text" />
+        </label><br />
+        <label>
+          City:
+          <input id="officer2_city" type="text" />
+        </label><br />
+        <label>
+          State:
+          <input id="officer2_state" type="text" />
+        </label><br />
+        <label>
+          ZIP:
+          <input id="officer2_zip" type="text" />
+        </label>
+      </div>
+
+      <!-- Officer 3 -->
+      <div style="margin-bottom: 10px;">
+        <strong>Officer 3</strong><br />
+        <label>
+          Title:
+          <input id="officer3_title" type="text" />
+        </label><br />
+        <label>
+          Name:
+          <input id="officer3_name" type="text" />
+        </label><br />
+        <label>
+          Address:
+          <input id="officer3_address" type="text" />
+        </label><br />
+        <label>
+          City:
+          <input id="officer3_city" type="text" />
+        </label><br />
+        <label>
+          State:
+          <input id="officer3_state" type="text" />
+        </label><br />
+        <label>
+          ZIP:
+          <input id="officer3_zip" type="text" />
+        </label>
+      </div>
+
+      <!-- Officer 4 -->
+      <div style="margin-bottom: 10px;">
+        <strong>Officer 4</strong><br />
+        <label>
+          Title:
+          <input id="officer4_title" type="text" />
+        </label><br />
+        <label>
+          Name:
+          <input id="officer4_name" type="text" />
+        </label><br />
+        <label>
+          Address:
+          <input id="officer4_address" type="text" />
+        </label><br />
+        <label>
+          City:
+          <input id="officer4_city" type="text" />
+        </label><br />
+        <label>
+          State:
+          <input id="officer4_state" type="text" />
+        </label><br />
+        <label>
+          ZIP:
+          <input id="officer4_zip" type="text" />
+        </label>
+      </div>
+    </fieldset>
+  </section>
+
+    </label>
+    <label>Contact Email (for confirmation)
+      <input id="email" type="email" placeholder="you@company.com" required />
+    </label>
+    <label>Contact Phone
+      <input id="phone" type="tel" placeholder="(###) ###-####" required />
+    </label>
+    <button type="submit">Continue to Payment ($99 + state fee)</button>
+  </form>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const docParam = params.get('doc');
+
+    function $(id) { return document.getElementById(id); }
+/*
+    async function loadEntity() {
+      if (!docParam) {
+        document.body.innerHTML = "<p>Missing document number in URL.</p>";
+        return;
+      }
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/api/entities/${encodeURIComponent(docParam)}`);
+        if (!res.ok) {
+          document.body.innerHTML = "<p>Company not found.</p>";
+          return;
+        }
+        const x = await res.json();
+        $("hdr").innerHTML =
+          `<div><strong>${x.name}</strong>
+             <span class="pill">${x.filing_type || ""}</span>
+             <span class="pill">${x.status || ""}</span>
+           </div>`;
+        $("doc").value = x.doc_number;
+        $("name").value = x.name;
+        $("type").value = x.filing_type || "";
+        $("status").value = x.status || "";
+        $("city").value = x.city || "";
+      } catch (e) {
+        console.error(e);
+        document.body.innerHTML = "<p>Error loading company.</p>";
+      }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const payload = {
+        doc_number: $("doc").value,
+        name: $("name").value,
+        filing_type: $("type").value,
+        status: $("status").value,
+        city: $("city").value,
+        email: $("email").value,
+        phone: $("phone").value,
+      };
+      alert("This is what we'd send to create the Stripe checkout:\n\n" + JSON.stringify(payload, null, 2));
+    }
+*/
+    loadEntity();
+  </script>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchError = document.getElementById('searchError');
+    const searchResults = document.getElementById('searchResults');
+
+    const entitySection = document.getElementById('entity-summary');
+    const nameEl = document.getElementById('entityName');
+    const docEl = document.getElementById('entityDoc');
+    const statusEl = document.getElementById('entityStatus');
+    const filingTypeEl = document.getElementById('entityFilingType');
+    const feiEl = document.getElementById('entityFei');
+    const fileDateEl = document.getElementById('entityFileDate');
+
+    const principalAddressEl = document.getElementById('principalAddress');
+    const mailingAddressEl = document.getElementById('mailingAddress');
+    const registeredAgentEl = document.getElementById('registeredAgent');
+    const officersListEl = document.getElementById('officersList');
+    const reportYearsListEl = document.getElementById('reportYearsList');
+
+    function formatAddress(addr) {
+      if (!addr) return '';
+      const parts = [
+        addr.address1,
+        addr.address2,
+        addr.city && addr.state && addr.zip
+          ? addr.city + ', ' + addr.state + ' ' + addr.zip
+          : null,
+        addr.country
+      ].filter(Boolean);
+      return parts.join('<br>');
+    }
+
+    function formatDate(raw) {
+      if (!raw || raw.length !== 8) return raw || '';
+      return raw.slice(0,2) + '/' + raw.slice(2,4) + '/' + raw.slice(4);
+    }
+
+    function mapStatus(code) {
+      if (code === 'A') return 'Active';
+      if (!code) return '';
+      return code;
+    }
+
+    async function loadEntity(docNumber) {
+      searchError.textContent = '';
+      entitySection.style.display = 'none';
+
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/entities/${encodeURIComponent(docNumber)}`
+        );
+
+        if (!response.ok) {
+          searchError.textContent = `Error loading entity: ${response.status} ${response.statusText}`;
+          return;
+        }
+
+        const data = await response.json();
+
+        // Fill main fields
+        nameEl.textContent = data.name || '';
+        docEl.textContent = data.doc_number || '';
+        statusEl.textContent = mapStatus(data.status);
+        filingTypeEl.textContent = data.filing_type || '';
+        feiEl.textContent = data.fei_number || '';
+        fileDateEl.textContent = formatDate(data.file_date);
+   	
+	// Also copy into the renewal form fields (if they exist)
+    	const docField = document.getElementById('doc');
+    	if (docField) docField.value = data.doc_number || '';
+
+    	const nameField = document.getElementById('name');
+    	if (nameField) nameField.value = data.name || '';
+
+    	const typeField = document.getElementById('type');
+    	if (typeField) typeField.value = data.filing_type || '';
+
+    	const statusField = document.getElementById('status');
+   	if (statusField) statusField.value = mapStatus(data.status);
+
+	const cityField = document.getElementById('city');
+    	if (cityField) cityField.value = data.principal_address?.city || data.city || '';
+
+	const feiField = document.getElementById('fei');
+    	if (feiField) feiField.value = data.fei_number || '';
+
+   // Principal Address → form fields
+    const pa = data.principal_address || {};
+    const pa1 = document.getElementById('principal_address1');
+    if (pa1) pa1.value = pa.address1 || '';
+    const pa2 = document.getElementById('principal_address2');
+    if (pa2) pa2.value = pa.address2 || '';
+    const paCity = document.getElementById('principal_city');
+    if (paCity) paCity.value = pa.city || '';
+    const paState = document.getElementById('principal_state');
+    if (paState) paState.value = pa.state || '';
+    const paZip = document.getElementById('principal_zip');
+    if (paZip) paZip.value = pa.zip || '';
+    const paCountry = document.getElementById('principal_country');
+    if (paCountry) paCountry.value = pa.country || '';
+
+    // Mailing Address → form fields
+    const ma = data.mailing_address || {};
+    const ma1 = document.getElementById('mailing_address1');
+    if (ma1) ma1.value = ma.address1 || '';
+    const ma2 = document.getElementById('mailing_address2');
+    if (ma2) ma2.value = ma.address2 || '';
+    const maCity = document.getElementById('mailing_city');
+    if (maCity) maCity.value = ma.city || '';
+    const maState = document.getElementById('mailing_state');
+    if (maState) maState.value = ma.state || '';
+    const maZip = document.getElementById('mailing_zip');
+    if (maZip) maZip.value = ma.zip || '';
+    const maCountry = document.getElementById('mailing_country');
+    if (maCountry) maCountry.value = ma.country || '';
+
+    // Registered Agent → form fields
+    const ra = data.registered_agent || {};
+    const raName = document.getElementById('ra_name');
+    if (raName) raName.value = ra.name || '';
+    const raAddr = document.getElementById('ra_address1');
+    if (raAddr) raAddr.value = ra.address || '';
+    const raCity = document.getElementById('ra_city');
+    if (raCity) raCity.value = ra.city || '';
+    const raState = document.getElementById('ra_state');
+    if (raState) raState.value = ra.state || '';
+    const raZip = document.getElementById('ra_zip');
+    if (raZip) raZip.value = ra.zip || '';
+
+    // Officers → individual fields (up to 4)
+    if (Array.isArray(data.officers)) {
+      // Helper to set officer fields by index
+      function fillOfficer(index, off) {
+        const num = index + 1; // 1–4
+        const get = (suffix) =>
+          document.getElementById(`officer${num}_${suffix}`);
+
+        const titleInput = get('title');
+        if (titleInput) titleInput.value = off?.title || '';
+
+        const nameInput = get('name');
+        if (nameInput) nameInput.value = off?.name || '';
+
+        const addrInput = get('address');
+        if (addrInput) addrInput.value = off?.address || '';
+
+        const cityInput = get('city');
+        if (cityInput) cityInput.value = off?.city || '';
+
+        const stateInput = get('state');
+        if (stateInput) stateInput.value = off?.state || '';
+
+        const zipInput = get('zip');
+        if (zipInput) zipInput.value = off?.zip || '';
+      }
+
+      // Fill up to 4 officers
+      for (let i = 0; i < 4; i++) {
+        fillOfficer(i, data.officers[i]);
+      }
+    }
+
+        // Addresses
+        principalAddressEl.innerHTML = formatAddress(data.principal_address);
+        mailingAddressEl.innerHTML = formatAddress(data.mailing_address);
+
+        // Registered agent
+        if (data.registered_agent) {
+          registeredAgentEl.innerHTML =
+            (data.registered_agent.name || '') + '<br>' +
+            (data.registered_agent.address || '') + '<br>' +
+            [
+              data.registered_agent.city,
+              data.registered_agent.state,
+              data.registered_agent.zip
+            ].filter(Boolean).join(' ');
+        } else {
+          registeredAgentEl.textContent = '';
+        }
+
+        // Officers
+        officersListEl.innerHTML = '';
+        if (Array.isArray(data.officers)) {
+          data.officers.forEach(off => {
+            const li = document.createElement('li');
+            li.textContent =
+              (off.title ? off.title + ' - ' : '') +
+              (off.name || '') +
+              ' | ' +
+              [off.address, off.city, off.state, off.zip].filter(Boolean).join(', ');
+            officersListEl.appendChild(li);
+          });
+        }
+
+        // Report years
+        reportYearsListEl.innerHTML = '';
+        if (Array.isArray(data.report_years)) {
+          data.report_years.forEach(r => {
+            const li = document.createElement('li');
+            li.textContent =
+              (r.year || '') +
+              (r.date ? ' filed on ' + formatDate(r.date) : '');
+            reportYearsListEl.appendChild(li);
+          });
+        }
+
+        entitySection.style.display = 'block';
+      } catch (err) {
+        searchError.textContent = 'Request failed: ' + err;
+      }
+    }
+
+    searchBtn.addEventListener('click', async () => {
+      const q = searchInput.value.trim();
+      searchError.textContent = '';
+      searchResults.innerHTML = '';
+
+      if (!q) {
+        searchError.textContent = 'Type a name or document number to search.';
+        return;
+      }
+
+      searchError.textContent = 'Searching...';
+
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/entities/search?q=${encodeURIComponent(q)}`
+        );
+
+        if (!response.ok) {
+          searchError.textContent = `Error: ${response.status} ${response.statusText}`;
+          return;
+        }
+
+        const data = await response.json();
+        searchError.textContent = '';
+
+        if (!Array.isArray(data) || data.length === 0) {
+          searchError.textContent = 'No results found.';
+          return;
+        }
+
+        data.forEach(item => {
+          const li = document.createElement('li');
+          const city = item.city ? ' — ' + item.city : '';
+          li.textContent = `${item.name} (${item.doc_number})${city}`;
+          li.style.padding = '8px 10px';
+          li.style.cursor = 'pointer';
+
+          li.addEventListener('mouseover', () => {
+            li.style.backgroundColor = '#e6f2ff';
+          });
+          li.addEventListener('mouseout', () => {
+            li.style.backgroundColor = '';
+          });
+
+          li.addEventListener('click', () => {
+            loadEntity(item.doc_number);
+            searchResults.innerHTML = '';
+          });
+
+          searchResults.appendChild(li);
+        });
+      } catch (err) {
+        searchError.textContent = 'Search failed: ' + err;
+      }
+    });
+  </script>
+<</body>
+</html>
+
+<script>
+  // Read doc number from URL, call API, and prefill fields
+  async function loadCompanyFromUrl() {
+    const nameEl = document.getElementById('company-name');
+    const errorEl = document.getElementById('error-message');
+
+    // 1. Get ?doc=... from the URL
+    const params = new URLSearchParams(window.location.search);
+    const docNumber = params.get('doc');
+
+    if (!docNumber) {
+      nameEl.textContent = 'No document number found in the link.';
+      return;
+    }
+
+    nameEl.textContent = 'Loading company for doc: ' + docNumber + ' ...';
+
+    try {
+      // 2. Call your API using the doc number
+      const res = await fetch('http://127.0.0.1:8000/api/entities/' + encodeURIComponent(docNumber));
+
+      if (!res.ok) {
+        nameEl.textContent = 'Company not found.';
+        return;
+      }
+
+      // 3. Convert the response to a JavaScript object
+      const data = await res.json();
+      window._entity = data;                // so we can inspect in console
+      console.log('Entity data:', data);    // helpful for debugging
+
+      // --- BASIC FIELDS ---
+
+      // Company name display + input
+      nameEl.textContent = data.name || 'Company name missing in response';
+
+      const companyNameInput = document.getElementById('company-name-input');
+      if (companyNameInput) {
+        companyNameInput.value = data.name || '';
+      }
+
+      // Document number
+      const docInput = document.getElementById('doc-number-input');
+      if (docInput) {
+        docInput.value = data.doc_number || '';
+      }
+
+      // FEIN
+      const feinInput = document.getElementById('fein-input');
+      if (feinInput) {
+        const feinValue =
+          data.fein ||
+          data.fei ||
+          data.fei_number ||
+          data.fein_number ||
+          data.FEI ||
+          data.FEIN ||
+          '';
+        feinInput.value = feinValue;
+      }
+
+      // --- PRINCIPAL ADDRESS ---
+      if (data.principal_address) {
+        const pa = data.principal_address;
+
+        const principalLine1 = document.getElementById('principal-line1');
+        if (principalLine1) {
+          principalLine1.value =
+            pa.line1 ||
+            pa.address1 ||
+            pa.address ||
+            pa.street ||
+            pa.street1 ||
+            '';
+        }
+
+        const principalLine2 = document.getElementById('principal-line2');
+        if (principalLine2) {
+          principalLine2.value =
+            pa.line2 ||
+            pa.address2 ||
+            pa.street2 ||
+            '';
+        }
+
+        const principalCity = document.getElementById('principal-city');
+        if (principalCity) {
+          principalCity.value = pa.city || '';
+        }
+
+        const principalState = document.getElementById('principal-state');
+        if (principalState) {
+          principalState.value = pa.state || pa.st || '';
+        }
+
+        const principalZip = document.getElementById('principal-zip');
+        if (principalZip) {
+          principalZip.value =
+            pa.zip ||
+            pa.zipcode ||
+            pa.postal_code ||
+            '';
+        }
+      }
+
+      // --- MAILING ADDRESS ---
+      if (data.mailing_address) {
+        const ma = data.mailing_address;
+
+        const mailingLine1 = document.getElementById('mailing-line1');
+        if (mailingLine1) {
+          mailingLine1.value =
+            ma.line1 ||
+            ma.address1 ||
+            ma.address ||
+            ma.street ||
+            ma.street1 ||
+            '';
+        }
+
+        const mailingLine2 = document.getElementById('mailing-line2');
+        if (mailingLine2) {
+          mailingLine2.value =
+            ma.line2 ||
+            ma.address2 ||
+            ma.street2 ||
+            '';
+        }
+
+        const mailingCity = document.getElementById('mailing-city');
+        if (mailingCity) {
+          mailingCity.value = ma.city || '';
+        }
+
+        const mailingState = document.getElementById('mailing-state');
+        if (mailingState) {
+          mailingState.value = ma.state || ma.st || '';
+        }
+
+        const mailingZip = document.getElementById('mailing-zip');
+        if (mailingZip) {
+          mailingZip.value =
+            ma.zip ||
+            ma.zipcode ||
+            ma.postal_code ||
+            '';
+        }
+      }
+
+      // --- REGISTERED AGENT (NAME + ADDRESS) ---
+      if (data.registered_agent) {
+        const ra = data.registered_agent;
+
+        // Name
+        const raNameInput = document.getElementById('ra-name');
+        if (raNameInput) {
+          raNameInput.value = ra.name || '';
+        }
+
+        // Address Line 1
+        const raLine1 = document.getElementById('ra-line1');
+        if (raLine1) {
+          raLine1.value =
+            ra.address1 ||   // if RA uses address1/address2 like principal
+            ra.line1 ||
+            ra.address ||    // single-line fallback
+            '';
+        }
+
+
+	const raLine2 = document.getElementById('ra-line2');
+        if (raLine2) {
+          raLine2.value =
+            ra.line2 ||
+            ra.address2 ||
+            ra.street2 ||
+            '';
+        }
+
+
+
+
+        // Address Line 2
+       // const raLine2 = document.getElementById('ra-line2');
+       // if (raLine2) {
+       //   raLine2.value =
+       //     ra.address2 ||   // real second line
+       //     ra.line2 ||
+       //     ra.street2 ||
+       //     '';              // ❗ no fallback to ra.address anymore
+       // }
+
+        // City
+        const raCity = document.getElementById('ra-city');
+        if (raCity) {
+          raCity.value = ra.city || '';
+        }
+
+        // State
+        const raState = document.getElementById('ra-state');
+        if (raState) {
+          raState.value = ra.state || '';
+        }
+
+        // Zip
+        const raZip = document.getElementById('ra-zip');
+        if (raZip) {
+          raZip.value =
+            ra.zip ||
+            ra.zipcode ||
+            ra.postal_code ||
+            '';
+        }
+      }
+
+      // --- OFFICERS (OFFICER 1: NAME SPLIT + ADDRESS) ---
+      if (data.officers && data.officers.length > 0) {
+        const o1 = data.officers[0];
+
+        // 1) Get raw name from API
+        const rawName =
+          o1.name ||
+          o1.officer_name ||
+          o1.full_name ||
+          '';
+
+        let firstName = '';
+        let lastName = '';
+
+        if (rawName) {
+          // Clean up spacing
+          const cleaned = rawName.trim().replace(/\s+/g, ' ');
+          const parts = cleaned.split(' ');
+
+          if (parts.length === 1) {
+            // Only one name — treat it as first name
+            firstName = cleaned;
+          } else {
+            // Assume data is "LAST FIRST [MIDDLE...]"
+            // e.g. "SMITH JOHN" → first = "JOHN", last = "SMITH"
+            lastName = parts[0];
+            firstName = parts.slice(1).join(' ');
+          }
+        }
+
+        // Fill first name / last name boxes
+        const officer1First = document.getElementById('officer1-first');
+        if (officer1First) officer1First.value = firstName;
+
+        const officer1Last = document.getElementById('officer1-last');
+        if (officer1Last) officer1Last.value = lastName;
+
+        // 2) Title
+        const officer1Title = document.getElementById('officer1-title');
+        if (officer1Title) {
+          officer1Title.value =
+            o1.title ||
+            o1.role ||
+            o1.position ||
+            '';
+        }
+
+        // 3) Address – try nested object first, then top-level fields
+        const oa =
+          o1.address ||           // nested address object or string
+          o1.mailing_address ||
+          o1.principal_address ||
+          null;
+
+        // If address is an object like { address1, address2, city, state, zip }
+        if (oa && typeof oa === 'object') {
+          const officer1Line1 = document.getElementById('officer1-line1');
+          if (officer1Line1) {
+            officer1Line1.value =
+              oa.address1 ||
+              oa.line1 ||
+              oa.address ||
+              oa.street ||
+              '';
+          }
+
+          const officer1Line2 = document.getElementById('officer1-line2');
+          if (officer1Line2) {
+            officer1Line2.value =
+              oa.address2 ||
+              oa.line2 ||
+              oa.street2 ||
+              '';
+          }
+
+          const officer1City = document.getElementById('officer1-city');
+          if (officer1City) {
+            officer1City.value =
+              oa.city ||
+              '';
+          }
+
+          const officer1State = document.getElementById('officer1-state');
+          if (officer1State) {
+            officer1State.value =
+              oa.state ||
+              oa.st ||
+              '';
+          }
+
+          const officer1Zip = document.getElementById('officer1-zip');
+          if (officer1Zip) {
+            officer1Zip.value =
+              oa.zip ||
+              oa.zipcode ||
+              oa.postal_code ||
+              '';
+          }
+        }
+
+        // If address is just a single string, drop it into Line 1
+        if (oa && typeof oa === 'string') {
+          const officer1Line1 = document.getElementById('officer1-line1');
+          if (officer1Line1) officer1Line1.value = oa;
+        }
+
+        // 4) Top-level city/state/zip fallbacks (most likely for your data)
+        const officer1City = document.getElementById('officer1-city');
+        if (officer1City && !officer1City.value) {
+          officer1City.value =
+            o1.city ||
+            o1.officer_city ||
+            '';
+        }
+
+        const officer1State = document.getElementById('officer1-state');
+        if (officer1State && !officer1State.value) {
+          officer1State.value =
+            o1.state ||
+            o1.officer_state ||
+            '';
+        }
+
+        const officer1Zip = document.getElementById('officer1-zip');
+        if (officer1Zip && !officer1Zip.value) {
+          officer1Zip.value =
+            o1.zip ||
+            o1.officer_zip ||
+            o1.postal_code ||
+            '';
+        }
+      }
+
+	      // --- OFFICERS (OFFICER 2: NAME SPLIT + ADDRESS) ---
+      if (data.officers && data.officers.length > 1) {
+        const o2 = data.officers[1];
+
+        // 1) Get raw name from API
+        const rawName2 =
+          o2.name ||
+          o2.officer_name ||
+          o2.full_name ||
+          '';
+
+        let firstName2 = '';
+        let lastName2 = '';
+
+        if (rawName2) {
+          const cleaned2 = rawName2.trim().replace(/\s+/g, ' ');
+          const parts2 = cleaned2.split(' ');
+
+          if (parts2.length === 1) {
+            firstName2 = cleaned2;
+          } else {
+            // Assume "LAST FIRST [MIDDLE...]"
+            lastName2 = parts2[0];
+            firstName2 = parts2.slice(1).join(' ');
+          }
+        }
+
+        // Fill first / last
+        const officer2First = document.getElementById('officer2-first');
+        if (officer2First) officer2First.value = firstName2;
+
+        const officer2Last = document.getElementById('officer2-last');
+        if (officer2Last) officer2Last.value = lastName2;
+
+        // Title
+        const officer2Title = document.getElementById('officer2-title');
+        if (officer2Title) {
+          officer2Title.value =
+            o2.title ||
+            o2.role ||
+            o2.position ||
+            '';
+        }
+
+        // Address – nested object first
+        const oa2 =
+          o2.address ||
+          o2.mailing_address ||
+          o2.principal_address ||
+          null;
+
+        if (oa2 && typeof oa2 === 'object') {
+          const officer2Line1 = document.getElementById('officer2-line1');
+          if (officer2Line1) {
+            officer2Line1.value =
+              oa2.address1 ||
+              oa2.line1 ||
+              oa2.address ||
+              oa2.street ||
+              '';
+          }
+
+          const officer2Line2 = document.getElementById('officer2-line2');
+          if (officer2Line2) {
+            officer2Line2.value =
+              oa2.address2 ||
+              oa2.line2 ||
+              oa2.street2 ||
+              '';
+          }
+
+          const officer2City = document.getElementById('officer2-city');
+          if (officer2City) {
+            officer2City.value = oa2.city || '';
+          }
+
+          const officer2State = document.getElementById('officer2-state');
+          if (officer2State) {
+            officer2State.value =
+              oa2.state ||
+              oa2.st ||
+              '';
+          }
+
+          const officer2Zip = document.getElementById('officer2-zip');
+          if (officer2Zip) {
+            officer2Zip.value =
+              oa2.zip ||
+              oa2.zipcode ||
+              oa2.postal_code ||
+              '';
+          }
+        }
+
+        // If address is just a string
+        if (oa2 && typeof oa2 === 'string') {
+          const officer2Line1 = document.getElementById('officer2-line1');
+          if (officer2Line1) officer2Line1.value = oa2;
+        }
+
+        // Top-level city/state/zip fallbacks
+        const officer2City = document.getElementById('officer2-city');
+        if (officer2City && !officer2City.value) {
+          officer2City.value =
+            o2.city ||
+            o2.officer_city ||
+            '';
+        }
+
+        const officer2State = document.getElementById('officer2-state');
+        if (officer2State && !officer2State.value) {
+          officer2State.value =
+            o2.state ||
+            o2.officer_state ||
+            '';
+        }
+
+        const officer2Zip = document.getElementById('officer2-zip');
+        if (officer2Zip && !officer2Zip.value) {
+          officer2Zip.value =
+            o2.zip ||
+            o2.officer_zip ||
+            o2.postal_code ||
+            '';
+        }
+      }
+
+	      // --- OFFICERS (OFFICER 3: NAME SPLIT + ADDRESS) ---
+      if (data.officers && data.officers.length > 2) {
+        const o3 = data.officers[2];
+
+        // 1) Get raw name from API
+        const rawName3 =
+          o3.name ||
+          o3.officer_name ||
+          o3.full_name ||
+          '';
+
+        let firstName3 = '';
+        let lastName3 = '';
+
+        if (rawName3) {
+          const cleaned3 = rawName3.trim().replace(/\s+/g, ' ');
+          const parts3 = cleaned3.split(' ');
+
+          if (parts3.length === 1) {
+            firstName3 = cleaned3;
+          } else {
+            // Assume "LAST FIRST [MIDDLE...]"
+            lastName3 = parts3[0];
+            firstName3 = parts3.slice(1).join(' ');
+          }
+        }
+
+        // Fill first / last
+        const officer3First = document.getElementById('officer3-first');
+        if (officer3First) officer3First.value = firstName3;
+
+        const officer3Last = document.getElementById('officer3-last');
+        if (officer3Last) officer3Last.value = lastName3;
+
+        // Title
+        const officer3Title = document.getElementById('officer3-title');
+        if (officer3Title) {
+          officer3Title.value =
+            o3.title ||
+            o3.role ||
+            o3.position ||
+            '';
+        }
+
+        // Address – nested object first
+        const oa3 =
+          o3.address ||
+          o3.mailing_address ||
+          o3.principal_address ||
+          null;
+
+        if (oa3 && typeof oa3 === 'object') {
+          const officer3Line1 = document.getElementById('officer3-line1');
+          if (officer3Line1) {
+            officer3Line1.value =
+              oa3.address1 ||
+              oa3.line1 ||
+              oa3.address ||
+              oa3.street ||
+              '';
+          }
+
+          const officer3Line2 = document.getElementById('officer3-line2');
+          if (officer3Line2) {
+            officer3Line2.value =
+              oa3.address2 ||
+              oa3.line2 ||
+              oa3.street2 ||
+              '';
+          }
+
+          const officer3City = document.getElementById('officer3-city');
+          if (officer3City) {
+            officer3City.value = oa3.city || '';
+          }
+
+          const officer3State = document.getElementById('officer3-state');
+          if (officer3State) {
+            officer3State.value =
+              oa3.state ||
+              oa3.st ||
+              '';
+          }
+
+          const officer3Zip = document.getElementById('officer3-zip');
+          if (officer3Zip) {
+            officer3Zip.value =
+              oa3.zip ||
+              oa3.zipcode ||
+              oa3.postal_code ||
+              '';
+          }
+        }
+
+        // If address is just a string
+        if (oa3 && typeof oa3 === 'string') {
+          const officer3Line1 = document.getElementById('officer3-line1');
+          if (officer3Line1) officer3Line1.value = oa3;
+        }
+
+        // Top-level city/state/zip fallbacks
+        const officer3City = document.getElementById('officer3-city');
+        if (officer3City && !officer3City.value) {
+          officer3City.value =
+            o3.city ||
+            o3.officer_city ||
+            '';
+        }
+
+        const officer3State = document.getElementById('officer3-state');
+        if (officer3State && !officer3State.value) {
+          officer3State.value =
+            o3.state ||
+            o3.officer_state ||
+            '';
+        }
+
+        const officer3Zip = document.getElementById('officer3-zip');
+        if (officer3Zip && !officer3Zip.value) {
+          officer3Zip.value =
+            o3.zip ||
+            o3.officer_zip ||
+            o3.postal_code ||
+            '';
+        }
+      }
+
+
+    } catch (err) {
+      console.error(err);
+      nameEl.textContent = 'Error loading company.';
+      if (errorEl) {
+        errorEl.textContent = err.message;
+      }
+    }
+  }
+
+  // Run this when the page loads
+  loadCompanyFromUrl();
+</script>
+
+<!-- STEP 3: COGNITO CHECKOUT -->
+<section id="step-3" style="display:none;">
+  <h2>Step 3: Checkout &amp; Payment</h2>
+
+  <!-- Seamless Cognito embed: this script will inject the iframe automatically -->
+  <script
+    src="https://www.cognitoforms.com/f/seamless.js"
+    data-key="miBhZ9VscUi3hze02bL9dQ"
+    data-form="10">
+  </script>
+</section>
+
+<script src="https://www.cognitoforms.com/f/seamless.js" data-key="miBhZ9VscUi3hze02bL9dQ" data-form="10"></script>
+
+<script>
+  // Helper to safely get values
+  function fieldValue(id) {
+    const el = document.getElementById(id);
+    return el ? el.value || '' : '';
+  }
+
+  function fieldChecked(id) {
+    const el = document.getElementById(id);
+    return el ? !!el.checked : false;
+  }
+
+  // If you already have a showStep() function, you can remove this one.
+  function showStep(stepNumber) {
+    document.querySelectorAll('[id^="step-"]').forEach(function (el) {
+      el.style.display = 'none';
+    });
+    const target = document.getElementById('step-' + stepNumber);
+    if (target) target.style.display = 'block';
+  }
+
+  // Build the Cognito entry object based on Step 2 inputs
+  function buildCognitoEntryFromStep2() {
+    return {
+      // Business info
+      BusinessName: fieldValue('businessName'),
+      FEIN: fieldValue('fei'),
+      ContactEmail: fieldValue('contactEmail'),
+
+      // Principal Address (maps to Cognito Address field "PrincipalAddress")
+      PrincipalAddress: {
+        Address:   fieldValue('principal_address1'),
+        Address2:  fieldValue('principal_address2'),
+        City:      fieldValue('principal_city'),
+        State:     fieldValue('principal_state'),
+        PostalCode:fieldValue('principal_zip'),
+        Country:   'US'
+      },
+
+      // Mailing
+      MailingSameAsPrincipal: fieldChecked('mailing_same_checkbox'),
+      MailingAddress: {
+        Address:   fieldValue('mailing_address1'),
+        Address2:  fieldValue('mailing_address2'),
+        City:      fieldValue('mailing_city'),
+        State:     fieldValue('mailing_state'),
+        PostalCode:fieldValue('mailing_zip'),
+        Country:   'US'
+      },
+
+      // Registered Agent
+      RegisteredAgentName:  fieldValue('ra_name'),
+      RegisteredAgentEmail: fieldValue('ra_email'),
+      RegisteredAgentPhone: fieldValue('ra_phone'),
+
+      // Officer 1
+      Officer1Name: {
+        First: fieldValue('officer1_first'),
+        Last:  fieldValue('officer1_last')
+      },
+      Officer1Title: fieldValue('officer1_title'),
+      Officer1Address: {
+        Address:   fieldValue('officer1_address1'),
+        Address2:  fieldValue('officer1_address2'),
+        City:      fieldValue('officer1_city'),
+        State:     fieldValue('officer1_state'),
+        PostalCode:fieldValue('officer1_zip'),
+        Country:   'US'
+      },
+
+      // Officer 2
+      Officer2Name: {
+        First: fieldValue('officer2_first'),
+        Last:  fieldValue('officer2_last')
+      },
+      Officer2Title: fieldValue('officer2_title'),
+      Officer2Address: {
+        Address:   fieldValue('officer2_address1'),
+        Address2:  fieldValue('officer2_address2'),
+        City:      fieldValue('officer2_city'),
+        State:     fieldValue('officer2_state'),
+        PostalCode:fieldValue('officer2_zip'),
+        Country:   'US'
+      },
+
+      // Officer 3
+      Officer3Name: {
+        First: fieldValue('officer3_first'),
+        Last:  fieldValue('officer3_last')
+      },
+      Officer3Title: fieldValue('officer3_title'),
+      Officer3Address: {
+        Address:   fieldValue('officer3_address1'),
+        Address2:  fieldValue('officer3_address2'),
+        City:      fieldValue('officer3_city'),
+        State:     fieldValue('officer3_state'),
+        PostalCode:fieldValue('officer3_zip'),
+        Country:   'US'
+      },
+
+      // Product selection (dropdown / radio on Step 2 if you have one)
+      ServiceType: fieldValue('serviceType')
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('goToStep3');
+    if (!btn) return;
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Build prefill object from Step 2
+      var entry = buildCognitoEntryFromStep2();
+      window.cognitoPrefillEntry = entry; // optional debugging
+
+      // Prefill Cognito (seamless embed)
+      if (window.Cognito && typeof Cognito.prefill === 'function') {
+        Cognito.prefill(entry);
+      }
+
+      // Show Step 3 (Cognito form)
+      showStep(3);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
