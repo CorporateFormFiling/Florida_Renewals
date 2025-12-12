@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 from entity_details import find_entity
 from datetime import datetime, timezone
 
-CONN_STR = "dbname=sunbiz user=postgres password=yourpassword host=localhost port=5432"
+CONN_STR = DB_DSN
 
 load_dotenv()
 
 DB_DSN = os.getenv(
-    "DATABASE_URL",
+    "DB_DSN",
     "dbname=sunbiz user=postgres password=yourpassword host=localhost port=5432"
 )
 
